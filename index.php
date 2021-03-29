@@ -37,7 +37,7 @@
     </div>
 
     <!-- Login Form -->
-    <form>
+    <form method='POST' action='verificar-login.php'>
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Login">
       <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="Senha">
       <input type="submit" class="fadeIn fourth" value="Enviar">
