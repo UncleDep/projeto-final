@@ -20,16 +20,16 @@ session_start();
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid row pl-4 pr-4">
             <div class="container col position-start">
-                <label class="navbar-brand" href="#">Bem vindo, <?php echo $_SESSION["username"]; ?></label>
+                <label class="navbar-brand" href="#">Bem vindo, <?php echo $_SESSION["nome"]; ?></label>
             </div>
             
             <ul class="container col navbar-nav px-1">
                 <div class="row">
                     <li class="nav-item col px-0 pe-2">
-                        <a class="nav-link active text-end" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active text-end" aria-current="page" href="home.php">Home</a>
                     </li>
                     <li class="nav-item col px-0 ps-2">
-                        <a class="nav-link active" href="#">Calendário</a>
+                        <a class="nav-link active" href="calendario.php">Calendário</a>
                     </li>
                 </div>
                 

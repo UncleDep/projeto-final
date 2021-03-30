@@ -35,16 +35,31 @@ if ($result->num_rows > 0){
     session_start();
     $_SESSION["username"] = $login;
     $_SESSION["login"] = true;
+
+    $sql = "SELECT Nome, ID FROM USUARIO WHERE username = '$login' AND senha = '$senha'";
+    $result = $conn->query($sql);
+
+    if (!$result) {
+      trigger_error('Invalid query: ' . $conn->error);
+    }
+
+    if($result->num_rows > 0){
+      while($row = $result->fetch_assoc()){
+        $_SESSION["id"] = $row["ID"];
+        $_SESSION["nome"] = $row["Nome"];
+      }
+    }
+
     header('Location: home.php');
     echo "foi";
 }
 
 else {
-    //Aqui pode botar alguma msg de erro de login
     header('Location: index.php');
     echo "n foi";
 
     session_start();
+  
     $_SESSION["mensagem"] = "Login ou senha incorretos.";
     $_SESSION["erro"] = true;
 }
