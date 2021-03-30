@@ -36,7 +36,7 @@ if ($result->num_rows > 0){
     $_SESSION["username"] = $login;
     $_SESSION["login"] = true;
 
-    $sql = "SELECT Nome, ID FROM USUARIO WHERE username = '$login' AND senha = '$senha'";
+    $sql = "SELECT Nome, ID, Tipo FROM USUARIO, TIPO_USUARIO WHERE username = '$login' AND senha = '$senha' AND USUARIO.CPF = TIPO_USUARIO.CPF";
     $result = $conn->query($sql);
 
     if (!$result) {
@@ -47,6 +47,7 @@ if ($result->num_rows > 0){
       while($row = $result->fetch_assoc()){
         $_SESSION["id"] = $row["ID"];
         $_SESSION["nome"] = $row["Nome"];
+        $_SESSION["tipo"] = $row["Tipo"];
       }
     }
 

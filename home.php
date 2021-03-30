@@ -32,22 +32,29 @@ session_start();
                         <a class="nav-link active" href="calendario.php">Calendário</a>
                     </li>
                 </div>
-                
-            <!--<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown07">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </li>-->
             </ul>
             <ul class="navbar-nav col row px-1 position-end">
                 <li class="av-item col">
                     <a class="nav-link active text-end" href="sair.php">Sair</a>
                 </li>
             </ul>  
-        </div>
-        
+        </div>   
     </nav>
+
+    <div clas="container d-inline px-4 py-4 text-center">
+        <h1 class="display-1">Plataforma</h1>
+
+        <?php if($_SESSION["tipo"] == 1): ?>
+
+            <p>Aluno</p>
+
+        <?php endif; ?>
+
+        <?php if($_SESSION["tipo"] == 2): ?>
+            <a href="#a" class="btn btn-primary">Criar aviso</a>
+            <a href="#a" class="btn btn-primary">Criar tarefa</a>       
+        <?php endif; ?>
+    </div>
+
+    
 </body>
