@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 ?>
@@ -16,8 +17,8 @@ session_start();
 
     <title>PE</title>
 </head>
-<body class=bg-light>
-    <nav class="navbar navbar-dark bg-dark mb-3">
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid row pl-4 pr-4">
             <div class="container col position-start">
                 <label class="navbar-brand" href="#">Bem vindo, <?php echo $_SESSION["nome"]; ?></label>
@@ -41,23 +42,20 @@ session_start();
         </div>   
     </nav>
 
-    <div clas="container my-4 text-center">
-        <h1 class="display-1 text-center mb-5">Ações:</h1>
-
-        <?php if($_SESSION["tipo"] == 1): ?>
-
-            <p>Aluno</p>
-
-        <?php endif; ?>
-
-        <?php if($_SESSION["tipo"] == 2): ?>
-            <div class="container d-flex justify-content-center my-5">
-                <a href="criar-aviso.php" class="btn btn-primary me-3">Criar aviso</a>
-                <a href="criar-tarefa.php" class="btn btn-primary me-3">Criar tarefa</a>      
-            </div>
-             
-        <?php endif; ?>
+    <div class="container py-5">
+        <h3 class="text-center display-3">Criar aviso</h3>
+        <form class="py-4" action="validar-aviso.php" method="post">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control mb-4" name="titulo" placeholder="Título">
+            <label for="descricao">Descrição</label>
+            <textarea name="descricao" cols="30" rows="10" class="form-control mb-4" placeholder="Descrição"></textarea>
+            <label for="Data" class="form-label">Data</label>
+            <input type="datetime-local" name="data" class="form-control mb-4" placeholder="mês/dia/ano">
+            <label for="turma">Turmas afetadas</label>
+            <input type="text" name="turmas" class="form-control mb-4">
+            <label for="disciplinas">Disciplinas afetadas</label>
+            <input type="text" name="disciplinas" class="form-control mb-4">
+            <input type="submit" value="Criar" class="btn btn-primary w-100">
+        </form>
     </div>
-
-    
 </body>
