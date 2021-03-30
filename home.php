@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ?>
 
@@ -8,45 +9,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="style.css" rel="stylesheet"></script>
-    <title>Home</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
-    <style>
-    .navbar {
-  background-color: #333;
-  overflow: hidden;
-}
-    
-.navbar a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-    
-    </style>
-
-   
+    <title>PE</title>
 </head>
-
 <body>
-<div class="navbar">
-  <a href="#">Home</a>
-  <a href="#">Calendário</a>
-  <a href="#">Sair</a>
-</div>
-
-    
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid row pl-4 pr-4">
+            <div class="container col position-start">
+                <label class="navbar-brand" href="#">Bem vindo, <?php echo $_SESSION["username"]; ?></label>
+            </div>
+            
+            <ul class="container col navbar-nav px-1">
+                <div class="row">
+                    <li class="nav-item col px-0 pe-2">
+                        <a class="nav-link active text-end" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item col px-0 ps-2">
+                        <a class="nav-link active" href="#">Calendário</a>
+                    </li>
+                </div>
+                
+            <!--<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown07">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>-->
+            </ul>
+            <ul class="navbar-nav col row px-1 position-end">
+                <li class="av-item col">
+                    <a class="nav-link active text-end" href="sair.php">Sair</a>
+                </li>
+            </ul>  
+        </div>
+        
+    </nav>
 </body>
-</html>

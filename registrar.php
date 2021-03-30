@@ -9,12 +9,18 @@ if(!isset($_SESSION["registro"])){
   foreach($v as $a){
       $valores[$a] = '';
   }
+
+  $erro = false;
+  $mensagem = '';
 }
 
 else{
   foreach($v as $a){
     $valores[$a] = $_SESSION[$a];
   }
+
+  $erro = $_SESSION["erro"];
+  $mensagem = $_SESSION["mensagem"];
 }
 
 session_unset();
@@ -72,6 +78,9 @@ session_destroy();
       <input required type="text" id="cpf" class="fadeIn third" name="cpf" placeholder="CPF" value=<?php echo $valores['cpf'];?>>
       <input required type="text" id="matricula" class="fadeIn third" name="matricula" placeholder="Matrícula" value=<?php echo $valores['matricula'];?>>
       <input required type="submit" class="fadeIn fourth" value="Enviar">
+      <?php if($erro): ?>
+      <p class="text-danger">Erro: <?php echo $mensagem; ?></p>
+      <?php endif;?>
     </form>
 
     <!-- Remind Passowrd -->

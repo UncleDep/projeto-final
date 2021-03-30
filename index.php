@@ -1,3 +1,24 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION["erro"])){
+  $erro = false;
+  $mensagem = 'aa';
+  session_unset();
+  session_destroy();
+} else{
+  $erro = $_SESSION["erro"];
+  $mensagem = $_SESSION["mensagem"];
+  session_unset();
+  session_destroy();
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +60,11 @@
     <!-- Login Form -->
     <form method='POST' action='verificar-login.php'>
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Login">
-      <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="Senha">
+      <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="Senha"> 
       <input type="submit" class="fadeIn fourth" value="Enviar">
+      <?php if($erro): ?>
+      <p class="text-danger">Erro: <?php echo $mensagem; ?></p>
+      <?php endif;?>
     </form>
 
     <!-- Remind Passowrd -->
