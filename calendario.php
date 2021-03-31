@@ -92,16 +92,18 @@
                 if($result->num_rows > 0):
                     while($row = $result->fetch_assoc()):
                         $tipo = "AVISO";
+                        $entrega = "data: ";
                         $data = $row["DATA_DE_ENTREGA"];
 
                         if($row["ENTREGA"]){
                             $tipo = "TAREFA";
+                            $entrega = "entrega: ";
                         }
                         
         ?>
                         <ul>
                             <li>
-                                <h4><?php echo  "$tipo: " . $row["TITULO"] . " ($data)"?></h4>
+                                <h4><?php echo  "$tipo: " . $row["TITULO"] . " ($entrega $data)"?></h4>
                                 <p><?php echo $row["DESCRICAO"];?></p>
                                 <p>Valor: <?php echo $row["VALOR"];?></p>
                             </li>
