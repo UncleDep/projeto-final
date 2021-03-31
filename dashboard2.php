@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 $usuario_id = $_SESSION["id"];
@@ -40,50 +40,51 @@ function erro($mensagem, $cache, $conn){
 
 
 $idQuery = 0;
-$atividades = array();
+$turmas = array();
+$disciplinas = array();
+$tarefas = array();
 
 
 
+  
+   $sql = "SELECT * FROM ATIVIDADES_DA_TURMA INNER JOIN MATRICULA_TURMA ON ATIVIDADES_DA_TURMA.TURMA = MATRICULA_TURMA.TURMA WHERE USUARIO='$usuario_id';";
 
-    $sql = "SELECT atividade from ATIVIDADE_HAS_USUARIO where aluno = '$usuario_id'";
+   $result = $conn->query($sql) or die($conn->error);
 
-               
-                    
-                    $result = $conn->query($sql) or die($conn->error);
+   if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+        $turmas[] = $row;
+        }
+    }
 
-                    if($result->num_rows > 0){
-                        while($row = $result->fetch_assoc()){
-                            $idQuery = $row;
-                            }
-                        }
-                     
+    $sql2 = "SELECT * FROM ATIVIDADES_DA_DISCIPLINA INNER JOIN MATRICULA_DISCIPLINA ON ATIVIDADES_DA_DISCIPLINA.DISCIPLINA = MATRICULA_DISCIPLINA.DISCIPLINA WHERE USUARIO='$usuario_id';";
+
+    $result2 = $conn->query($sql2) or die($conn->error);
+
+    if($result2->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            $disciplinas[] = $row;
+            }
+        }
+
+    
+    
+
+    $sql3 = "SELECT TITULO FROM ATIVIDADES_DA_DISCIPLINA, ATIVIDADES_DA_TURMA WHERE DISCIPLINA in '$disciplinas' and TURMA in '$turmas'";
+
+    $result3 == $conn->query($sql3) or die($conn->error);
+
+    if($result2->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            $tarefas[] = $row;
+            }
+        }
 
 
 
-
-                    $sql2 = "SELECT titulo from atividade where '$idQuery' = ID";
-
-                    
-                    if($conn->query($sql2)){ 
-                        $result2 = $conn->query($sql2) or die($conn->error);
-                        
-                        if($result2->num_rows > 0){
-                            while($row = $result2->fetch_assoc()){
-                                
-                                array_push($atividades,$row);
-
-                            }
-
-                        }
-                    }
-
-                    
+    
 
                 
-
-                
-
-
 ?>
 
 <!DOCTYPE html>
@@ -166,25 +167,6 @@ $atividades = array();
                 </li>
             </ul>
 
-
-
-            <!--
-            <label for="titulo" class="form-label">Título</label>
-            <input type="text" class="form-control mb-4" name="titulo" placeholder="Título">
-            <label for="descricao">Descrição</label>
-            <textarea name="descricao" cols="30" rows="10" class="form-control mb-4" placeholder="Descrição"></textarea>
-            <label for="Data" class="form-label">Data de entrega</label>
-            <input type="datetime-local" name="data" class="form-control mb-4" placeholder="mês/dia/ano">
-            <label for="turma">Turmas afetadas</label>
-            <input type="text" name="turmas" class="form-control mb-4">
-            <label for="disciplinas">Disciplinas afetadas</label>
-            <input type="text" name="disciplinas" class="form-control mb-4">
-            <label for="disciplinas">Pontuação</label>
-            <input type="text" name="pontuacao" class="form-control mb-4">
-            <label for="disciplinas">Inserir questões</label>
-            
-            <input type="submit" value="Criar" class="btn btn-primary w-100">
-            !-->
 
           
         </form>
