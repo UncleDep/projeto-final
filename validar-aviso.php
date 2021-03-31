@@ -137,7 +137,7 @@ $last_id = 0;
 
 if($existe_disciplinas and $existe_turmas){
     $_SESSION["id"];
-    $sql = "INSERT INTO ATIVIDADE VALUES(NULL, FALSE, '$data', 0, '$titulo', '$descricao', '$autor')";
+    $sql = "INSERT INTO ATIVIDADE VALUES(NULL, FALSE, '$data', NULL, 0, '$titulo', '$descricao', '$autor')";
     echo $sql;
 
     if ($conn->query($sql) === TRUE) {
