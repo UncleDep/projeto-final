@@ -90,6 +90,7 @@
                 echo mysqli_error($conn);
 
                 if($result->num_rows > 0):
+                    echo "<ul>";
                     while($row = $result->fetch_assoc()):
                         $tipo = "AVISO";
                         $data = $row["DATA_DE_ENTREGA"];
@@ -99,16 +100,16 @@
                         }
                         
         ?>
-                        <ul>
+                        
                             <li>
                                 <h4><?php echo  "$tipo: " . $row["TITULO"] . " ($data)"?></h4>
                                 <p><?php echo $row["DESCRICAO"];?></p>
                                 <p>Valor: <?php echo $row["VALOR"];?></p>
                             </li>
-                        </ul>
+                        
         <?php
                     endwhile;
-
+                    echo "</ul>";
                 else:
                     echo "erro";
                 endif;

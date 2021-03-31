@@ -1,6 +1,19 @@
 <?php
 session_start();
 
+$usuario_id = $_SESSION["id"];
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Calendario";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}  
+
 ?>
 
 <!DOCTYPE html>
@@ -42,21 +55,68 @@ session_start();
     </nav>
 
     <div clas="container my-4 text-center">
-        <h1 class="display-1 text-center mb-5">Ações:</h1>
+        
+    <div class="container py-5" >
+        <h3 class="text-center display-3">Dashboard</h3>
+        
+        <h4 class="display-5 mb-4">Eventos da turma: </h4>
+        <?php
+        
+        $sql = "SELECT * FROM ATIVIDADES_DA_TURMA INNER JOIN MATRICULA_TURMA ON ATIVIDADES_DA_TURMA.TURMA = MATRICULA_TURMA.TURMA WHERE USUARIO='$usuario_id' ORDER BY DATA_DE_ENTREGA DESC";
 
-        <?php if($_SESSION["tipo"] == 1): ?>
+        $result = $conn->query($sql) or die($conn->error);
 
-            <p>Aluno</p>
+        if($result->num_rows > 0):
+            echo "<ul>";
+            $count = 0;
+            while($row = $result->fetch_assoc() and $count <= 4):   
+        ?>
+                <li>
+                    <h4><?php echo $row["TITULO"]?></h4>
+                    <p><?php echo $row["DESCRICAO"]?></p>
+                    <p><b>Data de entrega:</b> <?php echo $row["DATA_DE_ENTREGA"]; ?></p>
+                </li>
+        <?php 
+            endwhile; 
+            echo "</ul>"; 
+        else:
+            echo "<p>Nenhum evento<p>";
+        endif; ?>
 
-        <?php endif; ?>
+        <h4 class="display-5 mb-4">Eventos da disciplina: </h4>
+        <?php
+        
+        $sql = "SELECT * FROM ATIVIDADES_DA_DISCIPLINA INNER JOIN MATRICULA_DISCIPLINA ON ATIVIDADES_DA_DISCIPLINA.DISCIPLINA = MATRICULA_DISCIPLINA.DISCIPLINA WHERE USUARIO='$usuario_id'ORDER BY DATA_DE_ENTREGA DESC;";
+
+        $result = $conn->query($sql) or die($conn->error);
+
+        if($result->num_rows > 0):
+            echo "<ul>";
+            $count = 0;
+            while($row = $result->fetch_assoc() and $count <= 4):   
+        ?>
+                <li>
+                    <h4><?php echo $row["TITULO"]?></h4>
+                    <p><?php echo $row["DESCRICAO"]?></p>
+                    <p><b>Data de entrega:</b> <?php echo $row["DATA_DE_ENTREGA"]; ?></p>
+                </li>
+        <?php 
+            endwhile; 
+            echo "</ul>"; 
+        else:
+            echo "<p>Nenhum evento<p>";
+        endif; 
+        $conn->close(); ?>
+    </div>
 
         <?php if($_SESSION["tipo"] == 2): ?>
+            <h1 class="display-1 text-center mb-5">Ações:</h1>
             <div class="container d-flex justify-content-center my-5">
                 <a href="criar-aviso.php" class="btn btn-primary me-3">Criar aviso</a>
                 <a href="criar-tarefa.php" class="btn btn-primary me-3">Criar tarefa</a>      
             </div>
              
-        <?php endif; ?>
+        <?php endif;?>
     </div>
 
     
