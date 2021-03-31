@@ -1,4 +1,4 @@
-USE Calendario;
+	USE Calendario;
 
 # CPFs validos (apenas criar usuários com os cpfs incluídos aqui)
 
@@ -10,9 +10,9 @@ INSERT INTO TIPO_USUARIO VALUES('5', 1);
 
 # Usuarios teste
 
-INSERT INTO USUARIO VALUES('a@a.a', 'b', 'c', 'Fulano', 'da Silva', '2021-03-30 00:00:00', 1, 1); #aluno
-INSERT INTO USUARIO VALUES('b@b.b', 'c', 'd', 'Ciclano', 'Lima', '2021-03-30 00:00:00', 2, 2); #professor
-INSERT INTO USUARIO VALUES('josevaldocristao@gmail.com', 'admin', '123', 'Josevaldo', 'Cristão', '2021-03-30 00:00:00', 3, 3);
+INSERT INTO USUARIO VALUES('a@a.a', 'aluno', '123', 'Fulano', 'da Silva', '2021-03-30 00:00:00', 1, 1); #aluno
+INSERT INTO USUARIO VALUES('b@b.b', 'professor2', '123', 'Ciclano', 'Lima', '2021-03-30 00:00:00', 2, 2); #professor
+INSERT INTO USUARIO VALUES('josevaldocristo@gmail.com', 'professor', '123', 'Josevaldo', 'Cristo', '2021-03-30 00:00:00', 3, 3);
 
 # Turmas teste
 
