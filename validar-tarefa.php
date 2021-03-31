@@ -146,6 +146,7 @@ if($result->num_rows > 0){
 }
 
 $autor = $_SESSION['id'];
+$last_id = 0;
 
 if($existe_disciplinas and $existe_turmas){
     $_SESSION["id"];
@@ -154,8 +155,36 @@ if($existe_disciplinas and $existe_turmas){
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
+        $last_id = $conn->insert_id;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+
+
+    foreach($turmas as $x){
+        $sql = "INSERT INTO ATIVIDADE_TURMA VALUES(NULL, '$last_id', '$x');";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+    }
+
+    foreach($disciplinas as $x){
+
+        if($x != "/end"){
+            $sql = "INSERT INTO ATIVIDADE_DISCIPLINA VALUES(NULL, '$last_id', '$x')";
+            echo $sql;
+        }
+
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
 
     header("Location: home.php");
