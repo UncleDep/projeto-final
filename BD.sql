@@ -59,7 +59,7 @@ CREATE TABLE ATIVIDADE(
 	ID INT(10) NOT NULL AUTO_INCREMENT,
     entrega BOOLEAN NOT NULL,
     data_de_entrega DATETIME,
-    arquivo VARCHAR(300),
+    arquivo VARCHAR(300), #diretório do arquivo
     valor FLOAT(10) NOT NULL,
     titulo VARCHAR(120) NOT NULL,
     descricao TEXT NOT NULL,
