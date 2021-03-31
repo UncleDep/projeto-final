@@ -52,11 +52,13 @@ if ($result->num_rows > 0){
       }
     }
 
+    $conn->close();
     header('Location: home.php');
     echo "foi";
 }
 
 else {
+    $conn->close();
     header('Location: index.php');
     echo "n foi";
 
@@ -66,7 +68,7 @@ else {
     $_SESSION["erro"] = true;
 }
 
-$conn->close();
+
 
 
 

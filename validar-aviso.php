@@ -172,10 +172,6 @@ if($existe_disciplinas and $existe_turmas){
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-
-    
-
-    
 }
 
 $conn->close();

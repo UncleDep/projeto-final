@@ -92,9 +92,10 @@ if($result->num_rows > 0){
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
-  header("Location: index.php");
+  
 }
 
 $conn->close();
+header("Location: index.php");
 
 ?>
