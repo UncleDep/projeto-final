@@ -70,7 +70,7 @@ $tarefas = array();
     
     
 
-    $sql3 = "SELECT TITULO FROM ATIVIDADES_DA_DISCIPLINA, ATIVIDADES_DA_TURMA WHERE DISCIPLINA in '$disciplinas' and TURMA in '$turmas'";
+    $sql3 = "SELECT TITULO FROM ATIVIDADES_DA_DISCIPLINA, ATIVIDADES_DA_TURMA WHERE DISCIPLINA in '$disciplinas[]' and TURMA in '$turmas[]'";
 
     $result3 == $conn->query($sql3) or die($conn->error);
 
