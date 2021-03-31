@@ -21,6 +21,7 @@ $sql = "SELECT * FROM USUARIO WHERE username = '$login' AND senha = '$senha'";
 echo $sql;
 //$sql = "SELECT * FROM USUARIO WHERE USERNAME = '123'";
 $result = $conn->query($sql);
+$id = '';
 
 if (!$result) {
   trigger_error('Invalid query: ' . $conn->error);

@@ -52,6 +52,11 @@ select * from turma;
 select * from matricula_turma;
 select * from disciplina;
 select * from matricula_disciplina;
+select * from atividade;
 
 select * from usuario, tipo_usuario where usuario.cpf = tipo_usuario.cpf;
+
+SELECT count(DISTINCT ID) as COUNT FROM TURMA WHERE ID IN('1info', '2info', 'tur3');
+SELECT count(DISTINCT ID) as COUNT FROM TURMA WHERE ID IN('1info', '2info', '3enf');
+SELECT count(DISTINCT ID) as COUNT, count(DISTINCT ID) as COUNT2 FROM TURMA WHERE ID IN('1info', '2info', '3enf');
 

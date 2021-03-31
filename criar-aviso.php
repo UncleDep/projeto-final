@@ -2,6 +2,29 @@
 
 session_start();
 
+if(!isset($_SESSION["erro"])){
+    $titulo = '';
+    $descricao = '';
+    $data = '';
+    $turmas = '';
+    $disciplinas = '';
+    $erro = false;
+    $mensagem = '';
+} else if($_SESSION["erro"]){
+    $titulo = $_SESSION["aviso-cache"]["titulo"];
+    $descricao = $_SESSION["aviso-cache"]["descricao"];
+    $data = $_SESSION["aviso-cache"]["data"];
+    $turmas = $_SESSION["aviso-cache"]["turmas"];
+    $disciplinas = $_SESSION["aviso-cache"]["disciplinas"];
+    $turmas = $_SESSION["aviso-cache"]["turmas"];
+    $erro = true;
+    $mensagem = $_SESSION["mensagem"];
+}
+
+unset($_SESSION["aviso-cache"]);
+unset($_SESSION["erro"]);
+unset($_SESSION["mensagem"]);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,16 +69,19 @@ session_start();
         <h3 class="text-center display-3">Criar aviso</h3>
         <form class="py-4" action="validar-aviso.php" method="post">
             <label for="titulo" class="form-label">Título</label>
-            <input type="text" class="form-control mb-4" name="titulo" placeholder="Título">
+            <input required type="text" class="form-control mb-4" name="titulo" placeholder="Título" value = <?php echo $titulo; ?>>
             <label for="descricao">Descrição</label>
-            <textarea name="descricao" cols="30" rows="10" class="form-control mb-4" placeholder="Descrição"></textarea>
+            <textarea required name="descricao" cols="30" rows="10" class="form-control mb-4" placeholder="Descrição"><?php echo $descricao; ?></textarea>
             <label for="Data" class="form-label">Data</label>
-            <input type="datetime-local" name="data" class="form-control mb-4" placeholder="mês/dia/ano">
+            <input required type="datetime-local" name="data" class="form-control mb-4" placeholder="mês/dia/ano" value = <?php echo $data; ?>>
             <label for="turma">Turmas afetadas</label>
-            <input type="text" name="turmas" class="form-control mb-4">
+            <input required type="text" name="turmas" class="form-control mb-4" placeholder="Separar por vírgulas. Ex: turma1, turma2" value = <?php echo $turmas; ?>>
             <label for="disciplinas">Disciplinas afetadas</label>
-            <input type="text" name="disciplinas" class="form-control mb-4">
-            <input type="submit" value="Criar" class="btn btn-primary w-100">
+            <input required type="text" name="disciplinas" class="form-control mb-4" placeholder="Separar por vírgulas. Ex: disciplina1, disciplina2" value = <?php echo $disciplinas; ?>>
+            <input required type="submit" value="Criar" class="btn btn-primary w-100">
+            <?php if($erro): ?>
+                <p class="text-danger">Erro: <?php echo $mensagem; ?></p>
+            <?php endif;?>
         </form>
     </div>
 </body>
