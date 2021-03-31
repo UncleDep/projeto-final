@@ -25,7 +25,7 @@ $uploadfile = $uploaddir . basename($_FILES['questoes']['name']);
 
 move_uploaded_file($_FILES['questoes']['tmp_name'], $uploadfile);
 
-//
+/////
 
 $servername = "localhost";
 $username = "root";
