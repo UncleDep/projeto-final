@@ -188,7 +188,8 @@ if($existe_disciplinas and $existe_turmas){
     }
 
     header("Location: home.php");
-    //////
+    /////////
+    //
 }
 
 $conn->close();
