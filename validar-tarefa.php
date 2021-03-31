@@ -20,7 +20,7 @@ $pontuacao = $_POST["pontuacao"];
 $questoes = $_FILES['questoes']['name'];
 $questoes = preg_replace('/\\.[^.\\s]{3,4}$/', '', $questoes);
 
-$uploaddir = '/xampp/htdocs/Projeto/questoes/';
+$uploaddir = 'questoes/';
 $uploadfile = $uploaddir . basename($_FILES['questoes']['name']);
 
 move_uploaded_file($_FILES['questoes']['tmp_name'], $uploadfile);
@@ -49,7 +49,7 @@ function erro($mensagem, $cache, $conn){
     echo $_SESSION["mensagem"];
     print_r($_SESSION["aviso-cache"]);
 
-    header("Location: criar-aviso.php");
+    header("Location: criar-tarefa.php");
 }
 
 $turmas = explode(", ", $turmas);
